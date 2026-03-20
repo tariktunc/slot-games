@@ -1,0 +1,179 @@
+/* ── Slot Machine — BetVault theme ── */
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1.75rem;
+  text-align: center;
+  background: #213743;
+  border: 1px solid #2d4a5a;
+  border-radius: 1.25rem;
+}
+
+.title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  letter-spacing: 1px;
+}
+
+/* Bet selector */
+.betRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.betLabel { color: #8aa3b0; font-size: 0.85rem; }
+
+.betBtn {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: #1a2c38;
+  color: #8aa3b0;
+  border: 1px solid #2d4a5a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.betBtn:hover { border-color: #3a5a6e; color: #fff; }
+.betBtnActive { background: #2d4a5a; border-color: #00e701; color: #00e701 !important; }
+
+/* Slot Machine frame */
+.slotMachine {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  padding: 1.25rem;
+  background: #1a2c38;
+  border: 1px solid #2d4a5a;
+  border-radius: 1rem;
+  margin: 1.25rem 0;
+  box-shadow: inset 0 2px 20px rgba(0,0,0,0.4);
+}
+
+.reel {
+  width: 90px;
+  height: 270px;
+  background: #0f212e;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #2d4a5a;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+}
+
+.reelWindow {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.centerLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 90px;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+  border-top: 1.5px solid rgba(0, 231, 1, 0.5);
+  border-bottom: 1.5px solid rgba(0, 231, 1, 0.5);
+  box-shadow: 0 0 10px rgba(0, 231, 1, 0.15), inset 0 0 8px rgba(0,231,1,0.05);
+}
+
+.symbolsContainer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+}
+
+.symbol {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: #0f212e;
+  border-bottom: 1px solid #1a2c38;
+  transition: all 0.2s;
+}
+
+.symbol.center {
+  background: #1a2c38;
+  border-color: transparent;
+  box-shadow: inset 0 0 12px rgba(0,231,1,0.1);
+  transform: scale(1.04);
+  z-index: 1;
+}
+
+/* Spin animations */
+.spinning .symbolsContainer { animation: spin 0.35s linear infinite; }
+.spinning .reel:nth-child(2) .symbolsContainer { animation-duration: 0.4s; }
+.spinning .reel:nth-child(3) .symbolsContainer { animation-duration: 0.45s; }
+.stopping .symbolsContainer { animation: stopSpin 0.7s ease-out forwards; }
+
+@keyframes spin {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-90px); }
+}
+@keyframes stopSpin {
+  0%   { transform: translateY(-90px); opacity: 0.6; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Spin Button */
+.spinButton {
+  padding: 0.8rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #00e701;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 12px rgba(0,231,1,0.25);
+}
+.spinButton:hover:not(:disabled) { background: #00b800; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,231,1,0.35); }
+.spinButton:disabled { background: #1a2c38; color: #4a6070; cursor: not-allowed; box-shadow: none; transform: none; border: 1px solid #2d4a5a; }
+
+/* Message */
+.message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  background: #1a2c38;
+  color: #8aa3b0;
+  animation: fadeIn 0.25s ease;
+}
+.message.win {
+  color: #00e701;
+  background: rgba(0,231,1,0.06);
+  border: 1px solid rgba(0,231,1,0.2);
+  animation: winPulse 1.5s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes winPulse {
+  0%,100% { text-shadow: 0 0 6px rgba(0,231,1,0.5); }
+  50%     { text-shadow: 0 0 16px rgba(0,231,1,0.9); }
+}
+
+@media (max-width: 640px) {
+  .container { padding: 1rem; }
+  .reel { width: 72px; height: 216px; }
+  .symbol { height: 72px; font-size: 2rem; }
+  .centerLine { height: 72px; }
+}

@@ -1,0 +1,123 @@
+/* ── Crash Game — BetVault theme ── */
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1.75rem;
+  text-align: center;
+  background: #213743;
+  border: 1px solid #2d4a5a;
+  border-radius: 1.25rem;
+}
+
+.title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* Multiplier Screen */
+.multiplierDisplay {
+  position: relative;
+  height: 180px;
+  background: #0f212e;
+  border: 1px solid #2d4a5a;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.multiplierDisplay.running { border-color: rgba(0,231,1,0.4); box-shadow: inset 0 0 30px rgba(0,231,1,0.04); }
+.multiplierDisplay.crashed { border-color: rgba(244,67,54,0.5); box-shadow: inset 0 0 30px rgba(244,67,54,0.06); }
+.multiplierDisplay.cashed  { border-color: rgba(0,231,1,0.5);  box-shadow: inset 0 0 30px rgba(0,231,1,0.06); }
+
+.multiplierValue {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.running .multiplierValue { color: #00e701; text-shadow: 0 0 20px rgba(0,231,1,0.4); }
+.crashed .multiplierValue { color: #f44336; text-shadow: 0 0 20px rgba(244,67,54,0.5); }
+.cashed  .multiplierValue { color: #00e701; text-shadow: 0 0 20px rgba(0,231,1,0.5); }
+
+.crashLabel { color: #f44336; font-weight: 800; font-size: 1rem; letter-spacing: 4px; margin-top: 4px; }
+.cashLabel  { color: #00e701; font-weight: 800; font-size: 0.9rem; letter-spacing: 2px; margin-top: 4px; }
+
+.rocketWrapper { position: absolute; bottom: 14px; right: 18px; }
+.rocket { font-size: 2rem; display: block; }
+.rocketFlying  { animation: rocketFly 0.9s ease-in-out infinite alternate; }
+.rocketExploded { animation: explode 0.3s ease forwards; }
+
+@keyframes rocketFly { from { transform:translateY(0) rotate(-45deg); } to { transform:translateY(-6px) rotate(-45deg); } }
+@keyframes explode { 0%{transform:scale(1);} 50%{transform:scale(1.4);} 100%{transform:scale(0.8);opacity:0.6;} }
+
+/* Betting area */
+.bettingArea { display:flex; flex-direction:column; align-items:center; gap:0.85rem; }
+
+.betRow, .autoRow { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; justify-content:center; }
+.label { color:#8aa3b0; font-size:0.82rem; }
+
+.chipBtn {
+  padding: 0.28rem 0.7rem; font-size: 0.82rem; font-weight: 600;
+  background: #1a2c38; color: #8aa3b0; border: 1px solid #2d4a5a;
+  border-radius: 6px; cursor: pointer; transition: all 0.15s;
+}
+.chipBtn:hover { border-color:#3a5a6e; color:#fff; }
+.chipActive { background:#2d4a5a; border-color:#00e701; color:#00e701 !important; }
+
+.autoInput {
+  width: 72px; padding: 0.28rem 0.5rem;
+  background: #1a2c38; border: 1px solid #2d4a5a;
+  border-radius: 6px; color: #fff; font-size: 0.85rem;
+  text-align: center; outline: none;
+}
+.autoInput:focus { border-color: #00e701; }
+
+/* Buttons */
+.startBtn {
+  padding: 0.8rem 2.5rem; font-size: 1rem; font-weight: 700;
+  background: #00e701; color: #000; border: none; border-radius: 8px;
+  cursor: pointer; transition: all 0.15s;
+  box-shadow: 0 2px 12px rgba(0,231,1,0.25);
+}
+.startBtn:hover:not(:disabled) { background:#00b800; transform:translateY(-1px); }
+.startBtn:disabled { background:#1a2c38; color:#4a6070; cursor:not-allowed; box-shadow:none; border:1px solid #2d4a5a; }
+
+.cashOutBtn {
+  padding: 1rem 3rem; font-size: 1.15rem; font-weight: 800;
+  background: linear-gradient(135deg, #00e701, #00b800);
+  color: #000; border: none; border-radius: 8px;
+  cursor: pointer; transition: all 0.1s;
+  animation: cashPulse 0.7s ease-in-out infinite;
+  letter-spacing: 0.5px;
+}
+.cashOutBtn:hover { transform: scale(1.03); }
+
+@keyframes cashPulse {
+  0%,100% { box-shadow: 0 3px 16px rgba(0,231,1,0.35); }
+  50%     { box-shadow: 0 3px 28px rgba(0,231,1,0.6); }
+}
+
+/* Message */
+.message { margin-top:1rem; font-size:0.95rem; padding:0.7rem 1rem; border-radius:8px; animation:fadeIn 0.25s ease; }
+.win  { color:#00e701; background:rgba(0,231,1,0.06); border:1px solid rgba(0,231,1,0.2); }
+.lose { color:#f44336; background:rgba(244,67,54,0.05); border:1px solid rgba(244,67,54,0.15); }
+
+.hint { color:#2d4a5a; font-size:0.75rem; margin-top:1.25rem; }
+
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+
+@media (max-width:480px) {
+  .container { padding:1rem; }
+  .multiplierValue { font-size:2.75rem; }
+}

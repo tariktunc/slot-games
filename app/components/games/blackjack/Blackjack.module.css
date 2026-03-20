@@ -1,0 +1,101 @@
+/* ── Blackjack — BetVault theme ── */
+.container {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 1.75rem;
+  text-align: center;
+  background: #213743;
+  border: 1px solid #2d4a5a;
+  border-radius: 1.25rem;
+}
+
+.title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* Start */
+.startArea { display:flex; flex-direction:column; align-items:center; gap:1.25rem; }
+
+.betRow { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; justify-content:center; }
+.label { color:#8aa3b0; font-size:0.82rem; }
+
+.chipBtn {
+  padding: 0.28rem 0.7rem; font-size: 0.82rem; font-weight: 600;
+  background: #1a2c38; color: #8aa3b0; border: 1px solid #2d4a5a;
+  border-radius: 6px; cursor: pointer; transition: all 0.15s;
+}
+.chipBtn:hover { border-color:#3a5a6e; color:#fff; }
+.chipActive { background:#2d4a5a; border-color:#00e701; color:#00e701 !important; }
+
+/* Table area */
+.handSection { margin: 0.85rem 0; }
+.handLabel { color:#8aa3b0; font-size:0.78rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.5rem; }
+
+.hand { display:flex; gap:0.4rem; justify-content:center; flex-wrap:wrap; }
+
+/* Card */
+.card {
+  width: 60px; height: 84px;
+  border-radius: 7px;
+  background: #fff;
+  border: 1.5px solid #ddd;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  animation: dealCard 0.25s ease;
+}
+
+.cardRed   { color: #c62828; }
+.cardBlack { color: #0f212e; }
+
+.cardRank { font-size: 1.1rem; font-weight: 800; line-height: 1; }
+.cardSuit { font-size: 1.3rem; line-height: 1; }
+
+.cardBack { font-size: 2.2rem; color: #1a2c38; }
+
+@keyframes dealCard {
+  from { transform: translateY(-16px) scale(0.85); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.divider { color: #2d4a5a; font-size: 0.75rem; letter-spacing: 2px; margin: 0.4rem 0; }
+
+/* Actions */
+.actions { display:flex; gap:0.5rem; justify-content:center; margin-top:1.25rem; flex-wrap:wrap; }
+
+.actionBtn {
+  padding: 0.6rem 1.25rem; font-size: 0.9rem; font-weight: 600;
+  background: #1a2c38; color: #fff;
+  border: 1px solid #2d4a5a; border-radius: 7px;
+  cursor: pointer; transition: all 0.15s;
+}
+.actionBtn:hover { border-color:#3a5a6e; background:#213743; }
+
+.primaryBtn {
+  padding: 0.8rem 2.5rem; font-size: 0.95rem; font-weight: 700;
+  background: #00e701; color: #000; border: none; border-radius: 8px;
+  cursor: pointer; transition: all 0.15s;
+  box-shadow: 0 2px 12px rgba(0,231,1,0.25);
+}
+.primaryBtn:hover:not(:disabled) { background:#00b800; transform:translateY(-1px); }
+.primaryBtn:disabled { background:#1a2c38; color:#4a6070; cursor:not-allowed; box-shadow:none; border:1px solid #2d4a5a; }
+
+/* Message */
+.message { margin-top:1rem; font-size:0.95rem; padding:0.7rem 1rem; border-radius:8px; animation:fadeIn 0.25s ease; }
+.win  { color:#00e701; background:rgba(0,231,1,0.06); border:1px solid rgba(0,231,1,0.2); animation:winPulse 1.5s infinite; }
+.lose { color:#f44336; background:rgba(244,67,54,0.05); border:1px solid rgba(244,67,54,0.15); }
+.draw { color:#8aa3b0; background:#1a2c38; }
+
+@keyframes fadeIn  { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+@keyframes winPulse { 0%,100% { text-shadow:0 0 6px rgba(0,231,1,.5); } 50% { text-shadow:0 0 16px rgba(0,231,1,.9); } }
+
+@media (max-width:480px) {
+  .container { padding:1rem; }
+  .card { width:50px; height:70px; }
+  .cardRank { font-size:0.95rem; }
+  .cardSuit { font-size:1.1rem; }
+}
